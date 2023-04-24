@@ -239,5 +239,7 @@ resource "aws_security_group" "vpc_tls" {
     cidr_blocks = [module.vpc.vpc_cidr_block]
   }
 
-  tags = local.tags
+  tags = merge(local.tags, {
+    yor_trace = "d0f4396e-e13f-46aa-9306-fd776de2aee3"
+  })
 }
