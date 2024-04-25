@@ -39,7 +39,9 @@ resource "aws_vpc" "this" {
     { "Name" = var.name },
     var.tags,
     var.vpc_tags,
-  )
+    {
+      yor_trace = "1a3a9d84-d5e3-4753-a500-63786a93e5c3"
+  })
 }
 
 resource "aws_vpc_ipv4_cidr_block_association" "this" {
@@ -90,7 +92,9 @@ resource "aws_default_security_group" "this" {
     { "Name" = coalesce(var.default_security_group_name, var.name) },
     var.tags,
     var.default_security_group_tags,
-  )
+    {
+      yor_trace = "7a04a39b-349c-49d2-aeee-e5d0ccddd0c2"
+  })
 }
 
 ################################################################################
@@ -110,7 +114,9 @@ resource "aws_vpc_dhcp_options" "this" {
     { "Name" = var.name },
     var.tags,
     var.dhcp_options_tags,
-  )
+    {
+      yor_trace = "5b354325-5145-400f-b31c-344962d0e716"
+  })
 }
 
 resource "aws_vpc_dhcp_options_association" "this" {
@@ -133,7 +139,9 @@ resource "aws_internet_gateway" "this" {
     { "Name" = var.name },
     var.tags,
     var.igw_tags,
-  )
+    {
+      yor_trace = "20aaa922-f5ed-4afe-bc88-19800e6d5dcf"
+  })
 }
 
 resource "aws_egress_only_internet_gateway" "this" {
@@ -145,7 +153,9 @@ resource "aws_egress_only_internet_gateway" "this" {
     { "Name" = var.name },
     var.tags,
     var.igw_tags,
-  )
+    {
+      yor_trace = "67db174e-0a53-4733-8d94-65daaf81a0f2"
+  })
 }
 
 ################################################################################
@@ -186,7 +196,9 @@ resource "aws_default_route_table" "default" {
     { "Name" = coalesce(var.default_route_table_name, var.name) },
     var.tags,
     var.default_route_table_tags,
-  )
+    {
+      yor_trace = "956a12d7-cb40-4676-a782-ef717777b2f4"
+  })
 }
 
 ################################################################################
@@ -202,7 +214,9 @@ resource "aws_route_table" "public" {
     { "Name" = "${var.name}-${var.public_subnet_suffix}" },
     var.tags,
     var.public_route_table_tags,
-  )
+    {
+      yor_trace = "de0b94bd-e2d3-410f-8710-cc86d34e83f6"
+  })
 }
 
 resource "aws_route" "public_internet_gateway" {
@@ -244,7 +258,9 @@ resource "aws_route_table" "private" {
     },
     var.tags,
     var.private_route_table_tags,
-  )
+    {
+      yor_trace = "93aef7d3-aed8-480f-b989-5e355966a74c"
+  })
 }
 
 ################################################################################
@@ -265,7 +281,9 @@ resource "aws_route_table" "database" {
     },
     var.tags,
     var.database_route_table_tags,
-  )
+    {
+      yor_trace = "db28f334-0645-41a8-937a-dd7b6fb80710"
+  })
 }
 
 resource "aws_route" "database_internet_gateway" {
@@ -317,7 +335,9 @@ resource "aws_route_table" "redshift" {
     { "Name" = "${var.name}-${var.redshift_subnet_suffix}" },
     var.tags,
     var.redshift_route_table_tags,
-  )
+    {
+      yor_trace = "82d882df-0cee-4cbd-b25b-3994b38ab47d"
+  })
 }
 
 ################################################################################
@@ -333,7 +353,9 @@ resource "aws_route_table" "elasticache" {
     { "Name" = "${var.name}-${var.elasticache_subnet_suffix}" },
     var.tags,
     var.elasticache_route_table_tags,
-  )
+    {
+      yor_trace = "744cf832-efd6-41bd-83b8-33ff407de012"
+  })
 }
 
 ################################################################################
@@ -349,7 +371,9 @@ resource "aws_route_table" "intra" {
     { "Name" = "${var.name}-${var.intra_subnet_suffix}" },
     var.tags,
     var.intra_route_table_tags,
-  )
+    {
+      yor_trace = "7c344f18-b7be-43d3-9b77-e4fa90079989"
+  })
 }
 
 ################################################################################
@@ -377,7 +401,9 @@ resource "aws_subnet" "public" {
     },
     var.tags,
     var.public_subnet_tags,
-  )
+    {
+      yor_trace = "e7ec17ba-4e5d-4834-af79-3a937c68965c"
+  })
 }
 
 ################################################################################
@@ -404,7 +430,9 @@ resource "aws_subnet" "private" {
     },
     var.tags,
     var.private_subnet_tags,
-  )
+    {
+      yor_trace = "2a46f829-dd7a-455b-81be-a33048bd24b4"
+  })
 }
 
 ################################################################################
@@ -432,7 +460,9 @@ resource "aws_subnet" "outpost" {
     },
     var.tags,
     var.outpost_subnet_tags,
-  )
+    {
+      yor_trace = "ef07d367-8ee8-4b25-bf70-e41801f36043"
+  })
 }
 
 ################################################################################
@@ -459,7 +489,9 @@ resource "aws_subnet" "database" {
     },
     var.tags,
     var.database_subnet_tags,
-  )
+    {
+      yor_trace = "ee2b4b7c-4854-402d-91ac-9a3456947c8e"
+  })
 }
 
 resource "aws_db_subnet_group" "database" {
@@ -475,7 +507,9 @@ resource "aws_db_subnet_group" "database" {
     },
     var.tags,
     var.database_subnet_group_tags,
-  )
+    {
+      yor_trace = "333d425f-99d2-4495-a779-b929d7341410"
+  })
 }
 
 ################################################################################
@@ -502,7 +536,9 @@ resource "aws_subnet" "redshift" {
     },
     var.tags,
     var.redshift_subnet_tags,
-  )
+    {
+      yor_trace = "c0b8fc5e-b214-495b-b0e4-40444154d767"
+  })
 }
 
 resource "aws_redshift_subnet_group" "redshift" {
@@ -516,7 +552,9 @@ resource "aws_redshift_subnet_group" "redshift" {
     { "Name" = coalesce(var.redshift_subnet_group_name, var.name) },
     var.tags,
     var.redshift_subnet_group_tags,
-  )
+    {
+      yor_trace = "2b471a3c-958b-4da9-aee8-6f15037aa504"
+  })
 }
 
 ################################################################################
@@ -543,7 +581,9 @@ resource "aws_subnet" "elasticache" {
     },
     var.tags,
     var.elasticache_subnet_tags,
-  )
+    {
+      yor_trace = "1168c669-59f3-4e7d-9670-e51eaf351a8a"
+  })
 }
 
 resource "aws_elasticache_subnet_group" "elasticache" {
@@ -557,7 +597,9 @@ resource "aws_elasticache_subnet_group" "elasticache" {
     { "Name" = coalesce(var.elasticache_subnet_group_name, var.name) },
     var.tags,
     var.elasticache_subnet_group_tags,
-  )
+    {
+      yor_trace = "dc547515-8116-44f5-a7fb-58d58a73e50c"
+  })
 }
 
 ################################################################################
@@ -584,7 +626,9 @@ resource "aws_subnet" "intra" {
     },
     var.tags,
     var.intra_subnet_tags,
-  )
+    {
+      yor_trace = "32914fdf-b003-4080-9983-8ad9c51954a6"
+  })
 }
 
 ################################################################################
@@ -633,7 +677,9 @@ resource "aws_default_network_acl" "this" {
     { "Name" = coalesce(var.default_network_acl_name, var.name) },
     var.tags,
     var.default_network_acl_tags,
-  )
+    {
+      yor_trace = "9bf61ca5-6cc9-488c-816c-d42a878bca30"
+  })
 
   lifecycle {
     ignore_changes = [subnet_ids]
@@ -654,7 +700,9 @@ resource "aws_network_acl" "public" {
     { "Name" = "${var.name}-${var.public_subnet_suffix}" },
     var.tags,
     var.public_acl_tags,
-  )
+    {
+      yor_trace = "a6530342-60af-4f07-8f3e-cc701d7052c6"
+  })
 }
 
 resource "aws_network_acl_rule" "public_inbound" {
@@ -705,7 +753,9 @@ resource "aws_network_acl" "private" {
     { "Name" = "${var.name}-${var.private_subnet_suffix}" },
     var.tags,
     var.private_acl_tags,
-  )
+    {
+      yor_trace = "cf759341-3e24-43d5-897c-ebff34ece226"
+  })
 }
 
 resource "aws_network_acl_rule" "private_inbound" {
@@ -756,7 +806,9 @@ resource "aws_network_acl" "outpost" {
     { "Name" = "${var.name}-${var.outpost_subnet_suffix}" },
     var.tags,
     var.outpost_acl_tags,
-  )
+    {
+      yor_trace = "57a1d271-d9dd-4ae5-89c7-703a222b6065"
+  })
 }
 
 resource "aws_network_acl_rule" "outpost_inbound" {
@@ -807,7 +859,9 @@ resource "aws_network_acl" "intra" {
     { "Name" = "${var.name}-${var.intra_subnet_suffix}" },
     var.tags,
     var.intra_acl_tags,
-  )
+    {
+      yor_trace = "8fee7441-09d1-417e-9900-c3b75090ee12"
+  })
 }
 
 resource "aws_network_acl_rule" "intra_inbound" {
@@ -858,7 +912,9 @@ resource "aws_network_acl" "database" {
     { "Name" = "${var.name}-${var.database_subnet_suffix}" },
     var.tags,
     var.database_acl_tags,
-  )
+    {
+      yor_trace = "7d4e29b5-d85d-425f-b80d-bc58a37dec2f"
+  })
 }
 
 resource "aws_network_acl_rule" "database_inbound" {
@@ -909,7 +965,9 @@ resource "aws_network_acl" "redshift" {
     { "Name" = "${var.name}-${var.redshift_subnet_suffix}" },
     var.tags,
     var.redshift_acl_tags,
-  )
+    {
+      yor_trace = "16349f6c-abfd-4fdf-bcc7-d4d3f674f233"
+  })
 }
 
 resource "aws_network_acl_rule" "redshift_inbound" {
@@ -960,7 +1018,9 @@ resource "aws_network_acl" "elasticache" {
     { "Name" = "${var.name}-${var.elasticache_subnet_suffix}" },
     var.tags,
     var.elasticache_acl_tags,
-  )
+    {
+      yor_trace = "f2a1809c-9f8c-41e2-95a9-03df4884c38b"
+  })
 }
 
 resource "aws_network_acl_rule" "elasticache_inbound" {
@@ -1019,7 +1079,9 @@ resource "aws_eip" "nat" {
     },
     var.tags,
     var.nat_eip_tags,
-  )
+    {
+      yor_trace = "b7d62b11-23c0-4298-800e-d8c4cdb6f860"
+  })
 }
 
 resource "aws_nat_gateway" "this" {
@@ -1043,7 +1105,9 @@ resource "aws_nat_gateway" "this" {
     },
     var.tags,
     var.nat_gateway_tags,
-  )
+    {
+      yor_trace = "6202b6b4-5d99-416e-a229-f4e8430d5280"
+  })
 
   depends_on = [aws_internet_gateway.this]
 }
@@ -1165,7 +1229,9 @@ resource "aws_customer_gateway" "this" {
     { Name = "${var.name}-${each.key}" },
     var.tags,
     var.customer_gateway_tags,
-  )
+    {
+      yor_trace = "5cac75e9-fda2-41ef-ad0e-9e4efca6aaf4"
+  })
 }
 
 ################################################################################
@@ -1183,7 +1249,9 @@ resource "aws_vpn_gateway" "this" {
     { "Name" = var.name },
     var.tags,
     var.vpn_gateway_tags,
-  )
+    {
+      yor_trace = "a18933b0-bbdc-4657-b421-5ec0666c741d"
+  })
 }
 
 resource "aws_vpn_gateway_attachment" "this" {
@@ -1247,5 +1315,7 @@ resource "aws_default_vpc" "this" {
     { "Name" = coalesce(var.default_vpc_name, "default") },
     var.tags,
     var.default_vpc_tags,
-  )
+    {
+      yor_trace = "8ccfa7b1-371e-48ce-b196-3afc7dfcde02"
+  })
 }
