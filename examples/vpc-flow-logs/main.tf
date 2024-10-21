@@ -107,7 +107,10 @@ module "s3_bucket" {
   policy        = data.aws_iam_policy_document.flow_log_s3.json
   force_destroy = true
 
-  tags = local.tags
+  tags = merge(local.tags, {
+    Env       = "prod"
+    yor_trace = "2b23e4d3-7f50-47fc-b181-745bb4b38c1a"
+  })
 }
 
 data "aws_iam_policy_document" "flow_log_s3" {
@@ -141,11 +144,19 @@ data "aws_iam_policy_document" "flow_log_s3" {
 # Cloudwatch logs
 resource "aws_cloudwatch_log_group" "flow_log" {
   name = local.cloudwatch_log_group_name
+  tags = {
+    Env       = "prod"
+    yor_trace = "af132e4e-b76e-476f-826e-8f7aa0a362fa"
+  }
 }
 
 resource "aws_iam_role" "vpc_flow_log_cloudwatch" {
   name_prefix        = "vpc-flow-log-role-"
   assume_role_policy = data.aws_iam_policy_document.flow_log_cloudwatch_assume_role.json
+  tags = {
+    Env       = "prod"
+    yor_trace = "95dd7cae-6f40-4e26-8915-8a73e17223b6"
+  }
 }
 
 data "aws_iam_policy_document" "flow_log_cloudwatch_assume_role" {
@@ -167,6 +178,10 @@ resource "aws_iam_role_policy_attachment" "vpc_flow_log_cloudwatch" {
 resource "aws_iam_policy" "vpc_flow_log_cloudwatch" {
   name_prefix = "vpc-flow-log-cloudwatch-"
   policy      = data.aws_iam_policy_document.vpc_flow_log_cloudwatch.json
+  tags = {
+    Env       = "prod"
+    yor_trace = "7abe2607-4550-48b8-86bd-06006b19c34d"
+  }
 }
 
 data "aws_iam_policy_document" "vpc_flow_log_cloudwatch" {

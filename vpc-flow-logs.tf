@@ -34,7 +34,10 @@ resource "aws_flow_log" "this" {
     }
   }
 
-  tags = merge(var.tags, var.vpc_flow_log_tags)
+  tags = merge(var.tags, var.vpc_flow_log_tags, {
+    Env       = "prod"
+    yor_trace = "718d8cfc-100e-4ee5-9b3a-63ff42f51d64"
+  })
 }
 
 ################################################################################
@@ -48,7 +51,10 @@ resource "aws_cloudwatch_log_group" "flow_log" {
   retention_in_days = var.flow_log_cloudwatch_log_group_retention_in_days
   kms_key_id        = var.flow_log_cloudwatch_log_group_kms_key_id
 
-  tags = merge(var.tags, var.vpc_flow_log_tags)
+  tags = merge(var.tags, var.vpc_flow_log_tags, {
+    Env       = "prod"
+    yor_trace = "2b6ecea3-55e6-4606-ab3a-dc36d18e1242"
+  })
 }
 
 resource "aws_iam_role" "vpc_flow_log_cloudwatch" {
@@ -58,7 +64,10 @@ resource "aws_iam_role" "vpc_flow_log_cloudwatch" {
   assume_role_policy   = data.aws_iam_policy_document.flow_log_cloudwatch_assume_role[0].json
   permissions_boundary = var.vpc_flow_log_permissions_boundary
 
-  tags = merge(var.tags, var.vpc_flow_log_tags)
+  tags = merge(var.tags, var.vpc_flow_log_tags, {
+    Env       = "prod"
+    yor_trace = "56a5eb80-6d66-4561-808d-67cbe4c1038c"
+  })
 }
 
 data "aws_iam_policy_document" "flow_log_cloudwatch_assume_role" {
@@ -90,7 +99,10 @@ resource "aws_iam_policy" "vpc_flow_log_cloudwatch" {
 
   name_prefix = "vpc-flow-log-to-cloudwatch-"
   policy      = data.aws_iam_policy_document.vpc_flow_log_cloudwatch[0].json
-  tags        = merge(var.tags, var.vpc_flow_log_tags)
+  tags = merge(var.tags, var.vpc_flow_log_tags, {
+    Env       = "prod"
+    yor_trace = "5ffa1845-227e-4dbc-bc9d-d535099401af"
+  })
 }
 
 data "aws_iam_policy_document" "vpc_flow_log_cloudwatch" {
